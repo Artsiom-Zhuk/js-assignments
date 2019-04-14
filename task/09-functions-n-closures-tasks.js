@@ -155,13 +155,17 @@ function logger(func, logFunc) {
  *
  * @example
  *   var fn = function(x1,x2,x3,x4) { return  x1 + x2 + x3 + x4; };
- *   partialUsingArguments(fn, 'a')('b','c','d') => 'abcd'
+ *   partialUsingArguments(fn, 'a')  ('b','c','d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b')('c','d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn) {
-    throw new Error('Not implemented');
+    var args = Array.prototype.slice.call(arguments,1);
+    return function(){
+        var arg = args.concat(...arguments);
+        return fn(...arg)
+    }
 }
 
 

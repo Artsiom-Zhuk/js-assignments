@@ -30,11 +30,11 @@
  *
  */
 function getFizzBuzz(num) {
-    if(num%3 === 0 && num%5 === 0){
+    if (num % 3 === 0 && num % 5 === 0) {
         return 'FizzBuzz'
-    }else if(num%3 === 0){
+    } else if (num % 3 === 0) {
         return 'Fizz';
-    } else if(num%5 === 0){
+    } else if (num % 5 === 0) {
         return 'Buzz';
     } else {
         return num;
@@ -54,10 +54,10 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-   if(n===1){
-       return 1;
-   } 
-   return getFactorial(n-1)*n;
+    if (n === 1) {
+        return 1;
+    }
+    return getFactorial(n - 1) * n;
 }
 
 
@@ -75,10 +75,10 @@ function getFactorial(n) {
  */
 function getSumBetweenNumbers(n1, n2) {
     let res = 0;
-   for( let i = n1; i < n2+1; i++){
-        res+=i;
-   }
-   return res;
+    for (let i = n1; i < n2 + 1; i++) {
+        res += i;
+    }
+    return res;
 }
 
 
@@ -96,11 +96,11 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(a,b,c) {
-   let arr = Array.from(arguments);
-   arr.sort((a,b)=>a-b);
-   if((Math.pow(arr[0],2)+Math.pow(arr[1],2))<Math.pow(arr[2],2)) return false;
-   return true;
+function isTriangle(a, b, c) {
+    let arr = Array.from(arguments);
+    arr.sort((a, b) => a - b);
+    if ((Math.pow(arr[0], 2) + Math.pow(arr[1], 2)) < Math.pow(arr[2], 2)) return false;
+    return true;
 }
 
 
@@ -184,7 +184,11 @@ function isInsideCircle(circle, point) {
  *   'entente' => null
  */
 function findFirstSingleChar(str) {
-    throw new Error('Not implemented');
+    return str.split('')
+        .filter((item, _, arr) => {
+            return arr.indexOf(item) === arr.lastIndexOf(item);
+        })
+        .shift();
 }
 
 
@@ -211,15 +215,15 @@ function findFirstSingleChar(str) {
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
     let objOpen = {
-        true:'[',
-        false:'('
-    } ;
-    
+        true: '[',
+        false: '('
+    };
+
     let objClose = {
-        true:']',
-        false:')'
+        true: ']',
+        false: ')'
     }
-    if(a > b){
+    if (a > b) {
         let num = b;
         b = a;
         a = num;
@@ -306,11 +310,11 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    while(num > 9){
+    while (num > 9) {
         num = String(num).split('');
-        num = num.reduce((acc,i)=>{
-            return acc+ +i;
-        },0)
+        num = num.reduce((acc, i) => {
+            return acc + +i;
+        }, 0)
     }
     return num;
 }
@@ -360,7 +364,7 @@ function isBracketsBalanced(str) {
             if (closeIndex !== openIndex) {
                 return false;
             }
-        }   
+        }
     }
 
     if (stack.length !== 0) {
@@ -429,10 +433,10 @@ function timespanToHumanString(startDate, endDate) {
  */
 function toNaryString(num, n) {
     let arr = [];
-    while(num > 0){
+    while (num > 0) {
         var ost = num % n;
         arr.push(ost);
-        num = Math.floor(num/n);
+        num = Math.floor(num / n);
     }
     return arr.reverse().join("");
 }
@@ -514,7 +518,7 @@ function evaluateTicTacToePosition(position) {
     if ((position[0][2] === position[1][2]) && (position[1][2] === position[2][2]) && (position[0][2] !== undefined)) return position[0][2];
 
     if ((position[0][0] === position[0][1]) && (position[0][1] === position[0][2]) && (position[0][0] !== undefined)) return position[0][0];
-    if ((position[1][0] === position[1][1]) && ( position[1][1] === position[1][2]) && (position[1][0] !== undefined)) return position[1][0];
+    if ((position[1][0] === position[1][1]) && (position[1][1] === position[1][2]) && (position[1][0] !== undefined)) return position[1][0];
     if ((position[2][0] === position[2][1]) && (position[2][1] === position[2][2]) && (position[2][0] !== undefined)) return position[2][0];
 
     if ((position[0][0] === position[1][1]) && (position[1][1] === position[2][2]) && (position[1][1] !== undefined)) return position[1][1];
@@ -530,15 +534,15 @@ module.exports = {
     doRectanglesOverlap: doRectanglesOverlap,
     isInsideCircle: isInsideCircle,
     findFirstSingleChar: findFirstSingleChar,
-    getIntervalString : getIntervalString,
+    getIntervalString: getIntervalString,
     reverseString: reverseString,
     reverseInteger: reverseInteger,
     isCreditCardNumber: isCreditCardNumber,
     getDigitalRoot: getDigitalRoot,
     isBracketsBalanced: isBracketsBalanced,
-    timespanToHumanString : timespanToHumanString,
+    timespanToHumanString: timespanToHumanString,
     toNaryString: toNaryString,
     getCommonDirectoryPath: getCommonDirectoryPath,
     getMatrixProduct: getMatrixProduct,
-    evaluateTicTacToePosition : evaluateTicTacToePosition
+    evaluateTicTacToePosition: evaluateTicTacToePosition
 };

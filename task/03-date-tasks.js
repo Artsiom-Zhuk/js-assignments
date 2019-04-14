@@ -112,6 +112,7 @@ function timeSpanToString(startDate, endDate) {
  */
 function angleBetweenClockHands(date) {
     throw new Error('Not implemented');
+
 }
 
 

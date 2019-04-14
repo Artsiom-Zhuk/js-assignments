@@ -507,7 +507,15 @@ function sortCitiesArray(arr) {
  *           [0,0,0,0,1]]   
  */
 function getIdentityMatrix(n) {
-   throw new Error('Not implemented');
+      return new Array(n).fill(0).map((_, index1) => {
+        return new Array(n).fill(0).map((_, index2) => {
+         if(index1 - index2 === 0 ) {
+             return 1
+         } else {
+            return 0;
+         }
+        });
+      });
 }
 
 /**
@@ -524,9 +532,7 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-   // if(start === end) return [start];
-   throw new Error('Not implemented');
-   
+   return new Array(end - start + 1).fill().map((item, index) => start + index);
 }
 
 /**
@@ -541,7 +547,7 @@ function getIntervalArray(start, end) {
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
 function distinct(arr) {
-   throw new Error('Not implemented');
+   return arr.filter((item, index, array) => array.indexOf(item) === index); 
 }
 
 /**
@@ -591,7 +597,11 @@ function group(array, keySelector, valueSelector) {
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
 function selectMany(arr, childrenSelector) {
-    throw new Error('Not implemented');
+   let resArr = arr.map((item)=>{
+		return childrenSelector(item);
+	})
+
+	return Array.prototype.concat.apply([],resArr);
 }
 
 
